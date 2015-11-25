@@ -22,19 +22,17 @@ def beep_listen ()
 end
 
 def human_answer (user)
-#	say "I determined you to be  " + user , {:voice => "Victor"}  ## Debugging only
 	log "value returned from the machine detection  ==  " + user
-	say $message , {:voice => "Victor"}
+	say $message , {:voice => "Tom"}
 	ask "to opt out of future reminders, please press 1", {
 		:choices => "1",
 		:mode => "dtmf",
-		:voice => "Victor" }
+		:voice => "Tom" }
 	say "Thank you, good bye" , {:voice => "Tom"}
 end
 
 
 def vm_answer (user)
-#	say "I determined you to be  " + user , {:voice => "Victor"}  ## Debugging only
 	log "value returned from the machine detection  ==  " + user
 	say $message , {:voice => "Tom"}
 end
@@ -42,8 +40,7 @@ end
  
 call $numberToDial , {        
 	:callerID => "14072420001",
-	:timeout => 60,
-#	:machineDetection => {"introduction" => "....", "voice" => "Victor" },	## The introduction could also be just a single period, and the CPA will return after either 1) detection has completed  or  2) after 10-second timeout, then "nil" will be returned
+	:timeout => 60,Tom
 	:machineDetection => {"introduction" => "Hello...", "voice" => "Tom" },
 	:onAnswer => lambda {|event|	
 		if event.value.userType.nil?
